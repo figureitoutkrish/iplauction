@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IPL Auction</title>
+</head>
+
+<body>
+
+<h1>IPL Auction</h1>
+
+<h2>Register</h2>
+
+<form method="POST" action="/register">
+<input name="username" placeholder="username">
+<input name="password" placeholder="password">
+<button type="submit">Register</button>
+</form>
+
+
+<h2>Login</h2>
+
+<form method="POST" action="/login">
+<input name="username">
+<input name="password">
+<button type="submit">Login</button>
+</form>
+
+
+<hr>
+
+
+<h2>Filters</h2>
+
+<a href="/">All</a>
+<a href="/?nation=Indian">Indian</a>
+<a href="/?nation=Overseas">Overseas</a>
+
+
+<hr>
+
+{% for player in players %}
+
+<h3>{{player.name}}</h3>
+
+Nationality: {{player.nationality}} <br>
+Team: {{player.team}} <br>
+Strike Rate: {{player.strike_rate}} <br>
+Performance: {{player.performance}} <br>
+
+<b>Current Bid: ₹{{player.current_bid}}</b>
+
+<form method="POST" action="/bid">
+
+<input type="hidden" name="player_id" value="{{player.id}}">
+<input name="bid_amount" placeholder="Enter bid">
+
+<button type="submit">Place Bid</button>
+
+</form>
+
+<hr>
+
+{% endfor %}
+
+</body>
+</html>
